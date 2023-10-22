@@ -22,24 +22,24 @@ jobs:
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-    # LOS PASOS QUE VIENEN ABAJO NO HACEN FALTA CON UNA CUENTA DE SERVICIO
-    # PERO CON EN TECO NO TENGO PERMISOS PARA CREARLA, USO MIS CREDENCIALES DE GCLOUD
+    # # LOS PASOS QUE VIENEN ABAJO NO HACEN FALTA CON UNA CUENTA DE SERVICIO
+    # # PERO CON EN TECO NO TENGO PERMISOS PARA CREARLA, USO MIS CREDENCIALES DE GCLOUD
     
-      - 
-        name: 'Set up Cloud SDK'
-        uses: 'google-github-actions/setup-gcloud@v1'
+    #   - 
+    #     name: 'Set up Cloud SDK'
+    #     uses: 'google-github-actions/setup-gcloud@v1'
 
-      - 
-        name: Authenticate with Google Cloud
-        run: gcloud auth application-default login
+    #   - 
+    #     name: Authenticate with Google Cloud
+    #     run: gcloud auth application-default login
 
     # ESTO ES PARA AUTENTICARSE CON UNA CUENTA DE SERVICIO! LO QUE ESTA ARRIBA ES PARA UNA CUENTA CON CREDENCIALES 
-    #   - 
-    #     id: 'auth'
-    #     name: 'Authenticate to Google Cloud'
-    #     uses: 'google-github-actions/auth@v1'
-    #     with:
-    #       credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
+      - 
+        id: 'auth'
+        name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
       - 
         name: Build Docker Image
         run: |
