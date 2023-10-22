@@ -47,6 +47,7 @@ jobs:
             docker tag serverless-py ${{ secrets.CONTAINER_IMAGE_URL }}:latest
             gcloud auth configure-docker ${{ secrets.REGION }}-docker.pkg.dev
             docker push ${{ secrets.CONTAINER_IMAGE_URL }} --all-tags
+          
             
       -
         name: Deploy container to GCloud Run
